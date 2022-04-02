@@ -7,10 +7,27 @@ import io.carbonchain.hiring.java.domain.Model;
 import io.carbonchain.hiring.java.domain.ModelRepository;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Application {
+  /** Keyphrase arg to switch to reading query from System.in */
+  final static String systemInSwitchString = "[read_from_system.in]";
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] argsIn) throws Exception {
+    String[] args;
+
+    // Read query from System.in if first parameter is the keyphrase string.
+    // This is used in the VSCode 'Launch Application' task
+    if (argsIn[0].equals(systemInSwitchString)) {
+      Scanner reader = new Scanner(System.in); // Reading from System.in
+      System.out.println("Enter query:");
+      String query = reader.nextLine(); // Stores the next line of the input
+      args = query.split("\\s+"); // Split the query into component words
+      reader.close();
+    } else {
+      args = argsIn;
+    }
+
     if (args.length < 3) {
       throw new Exception("Incorrect number of parameters");
     }

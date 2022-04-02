@@ -8,7 +8,6 @@
       "type": "java",
       "name": "Launch Current File",
       "request": "launch",
-      "console": "integratedTerminal",
       "mainClass": "${file}"
     },
     {
@@ -16,7 +15,9 @@
       "name": "Launch Application",
       "request": "launch",
       "mainClass": "io.carbonchain.hiring.java.Application",
-      "projectName": "java-challenge"
+      "projectName": "java-challenge",
+      "console": "integratedTerminal",
+      "args": "[read_from_system.in]"
     }
   ]
 }
