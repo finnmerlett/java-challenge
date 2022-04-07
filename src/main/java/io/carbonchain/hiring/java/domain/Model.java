@@ -13,14 +13,22 @@ public class Model {
   }
 
   public boolean isGlobalForCommodity(String commodity) {
-    return this.commodity.equals(commodity) && scope == null;
+    return this.commodity.equalsIgnoreCase(commodity) && scope == null;
   }
 
   public boolean matchesCommodityAndScope(String commodity, String scope) {
-    return this.commodity.equals(commodity) && scope.equals(this.scope);
+    return this.commodity.equalsIgnoreCase(commodity) && scope.equalsIgnoreCase(this.scope);
   }
 
   public Double getEmissionIntensity() {
     return emissionIntensity;
+  }
+
+  public String getScope() {
+    return scope;
+  }
+
+  public String getCommodity() {
+    return commodity;
   }
 }

@@ -12,13 +12,24 @@ public class Asset {
     this.continent = continent;
   }
 
+  public String getName() {
+    return this.name;
+  }
+
   public boolean nameMatches(String term) {
-    return name.equals(term);
+    return name.equalsIgnoreCase(term);
+  }
+
+  public String[] getScopes() {
+    // higher array index equals higher specificity
+    return new String[] { continent, country, name, };
   }
 
   public String[] matchingScopes(String term) {
-    if (country.equals(term) || continent.equals(term)) {
-      return new String[] { country, continent };
+    if (name.equalsIgnoreCase(term)
+        || country.equalsIgnoreCase(term)
+        || continent.equalsIgnoreCase(term)) {
+      return getScopes();
     } else {
       return null;
     }

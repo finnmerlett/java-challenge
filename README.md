@@ -5,8 +5,8 @@ the implementation. It contains the basic application infrastructure, a controll
 business logic, and a series of unit tests that document and test the intended behaviour.
 
 The current functionality supports a simple use case—to find the global emission intensity for a given commodity. For
-example, to find the emission intensity for Copper, one can run the application with `models search Copper` and get a 
-response `Global emission intensity for Copper is   13.4`.
+example, to find the emission intensity for Copper, one can run the application with `models search Copper` and get a
+response `Global emission intensity for Copper is 13.4`.
 
 ## Terminology
 
@@ -22,15 +22,14 @@ response `Global emission intensity for Copper is   13.4`.
 Your task is to extend the existing functionality. We would like to be able to pass the asset name and find a model with
 the smallest available scope for the given commodity (instead of always returning the global model).
 
-So, for example, with the input `model search Copper Khetri`, the application should return `India emission intesity for
-Copper is 18.223`. However,fFor `model search Zinc Tara` the application should return `Global emission intensity for
-Zinc is 5.33` because we do not have a model with `Ireland` or `Europe` scope in the database.
+So, for example, with the input `models search Copper Khetri`, the application should return `India emission intensity for Copper is 18.223`. However, for `models search Zinc Tara` the application should return `Global emission intensity for Zinc is 5.33` because we do not have a model with `Ireland` or `Europe` scope in the database.
 
 A couple of things to keep in mind
+
 - you don't have to provide a complete solution though please submit any thoughts and assumptions that will help us
   understand how you approach the problem
-- you shouldn't spend more than 2 hours on the solution—the main objective here is for you to get familiar with the
-  codebase so that we can discuss further improvements to it in the following technical interview 
+- you shouldn't spend more than 2 hours on the solution — the main objective here is for you to get familiar with the
+  codebase so that we can discuss further improvements to it in the following technical interview
 - while this is a toy application, it suggests the kind of problems we have to solve for in real life—your approach
   should be justifiable in a production context
 

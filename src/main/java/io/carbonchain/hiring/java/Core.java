@@ -42,7 +42,7 @@ public class Core {
   ) throws ApplicationException {
     Controller controller = controllers.get(path);
     if (controller == null) {
-      throw new ApplicationException("Path " + path + " has no matching controller");
+      throw new ApplicationException("Path '" + path + "' has no matching controller");
     }
     return invokeEndpoint(endpoint, controller, request);
   }
@@ -56,7 +56,10 @@ public class Core {
           .getDeclaredMethod(endpoint, Request.class)
           .invoke(controller, request);
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-      throw new ApplicationException("Problem when calling endpoint " + endpoint + ": " + e.getCause());
+      Throwable thrown = e.getCause();
+      throw new ApplicationException(
+          "Problem when calling endpoint " + endpoint + ": " +
+              (thrown instanceof ApplicationException ? thrown.getMessage() : thrown));
     }
   }
 }
