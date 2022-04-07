@@ -20,6 +20,7 @@ public class ModelsController implements Controller {
 
   public String search(Request request) throws ApplicationException {
     String commodity = request.get(0);
+    String scope = request.get(1); // String or null
 
     Double emissionIntensity = modelRepository.findGlobalByCommodity(commodity).getEmissionIntensity();
     return "Global emission intensity for " + commodity + " is " + emissionIntensity;

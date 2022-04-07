@@ -16,6 +16,10 @@ public class Model {
     return this.commodity.equals(commodity) && scope == null;
   }
 
+  public boolean matchesCommodityAndScope(String commodity, String scope) {
+    return this.commodity.equals(commodity) && scope.equals(this.scope);
+  }
+
   public Double getEmissionIntensity() {
     return emissionIntensity;
   }

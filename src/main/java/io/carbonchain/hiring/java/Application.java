@@ -32,6 +32,10 @@ public class Application {
       throw new Exception("Incorrect number of parameters");
     }
 
+    String pathInput = args[0];
+    String endpointInput = args[1];
+    String[] paramsInput = Arrays.copyOfRange(args, 2, args.length);
+
     AssetRepository assetRepository = Application.prepareAssetRepository();
     ModelRepository modelRepository = Application.prepareModelRepository();
 
@@ -42,7 +46,7 @@ public class Application {
     controllers.put("models", new ModelsController(assetRepository, modelRepository));
 
     Core core = new Core(middlewares, controllers);
-    String out = core.run(args[0], args[1], Arrays.copyOfRange(args, 2, args.length));
+    String out = core.run(pathInput, endpointInput, paramsInput);
     System.out.println(out);
   }
 

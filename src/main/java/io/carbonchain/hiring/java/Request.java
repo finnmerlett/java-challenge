@@ -9,6 +9,9 @@ public class Request {
   }
 
   public String get(int position) {
+    if (position >= params.length) {
+      return null;
+    }
     return params[position];
   }
 }

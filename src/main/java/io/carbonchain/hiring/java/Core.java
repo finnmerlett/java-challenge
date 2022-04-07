@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 public class Core {
 
+  // Middlewares are endpoint specific, hash-mapped to their associated endpoint
   private final HashMap<String, Middleware[]> middlewares;
   private final HashMap<String, Controller> controllers;
 
@@ -13,6 +14,7 @@ public class Core {
     this.controllers = controllers;
   }
 
+  // eg. core.run(path: "model", endpoint: "search", params: ["Copper", "Khetri"])
   public String run(String path, String endpoint, String[] params) {
     try {
       Request request = applyMiddleware(endpoint, new Request(params));
@@ -34,9 +36,9 @@ public class Core {
   }
 
   private String dispatchController(
-      String path,
-      String endpoint,
-      Request request
+      String path, // eg. "model"
+      String endpoint, // eg. "search"
+      Request request // at this point, just a glorified array eg. ["Copper", "Khetri"]
   ) throws ApplicationException {
     Controller controller = controllers.get(path);
     if (controller == null) {
@@ -48,8 +50,7 @@ public class Core {
   private String invokeEndpoint(
       String endpoint,
       Controller controller,
-      Request request
-  ) throws ApplicationException {
+      Request request) throws ApplicationException {
     try {
       return (String) controller.getClass()
           .getDeclaredMethod(endpoint, Request.class)

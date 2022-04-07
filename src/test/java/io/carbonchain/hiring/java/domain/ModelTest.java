@@ -30,4 +30,20 @@ public class ModelTest {
     assertFalse(model.isGlobalForCommodity("Zinc"),
         "Model should not be global for the commodity because the commodity doesn't match");
   }
+
+  @Test()
+  public void testIsScopedForCommodity_CommodityMatchesAndScope_ReturnsTrue() {
+    Model model = new Model("Copper", "India", 12.34);
+
+    assertTrue(model.matchesCommodityAndScope("Copper", "India"),
+        "Model should match because it matches the commodity and scope provided");
+  }
+
+  @Test()
+  public void testIsScopedForCommodity_CommodityMatchesAndNotScope_ReturnsFalse() {
+    Model model = new Model("Copper", "India", 12.34);
+
+    assertFalse(model.matchesCommodityAndScope("Copper", "Chile"),
+        "Model should not match because it matches the commodity but not the scope provided");
+  }
 }

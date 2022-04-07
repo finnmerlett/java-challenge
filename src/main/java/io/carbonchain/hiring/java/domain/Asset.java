@@ -15,4 +15,12 @@ public class Asset {
   public boolean nameMatches(String term) {
     return name.equals(term);
   }
+
+  public String[] matchingScopes(String term) {
+    if (country.equals(term) || continent.equals(term)) {
+      return new String[] { country, continent };
+    } else {
+      return null;
+    }
+  }
 }
